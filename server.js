@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -38,19 +39,19 @@ app.get('/api/faqs', (req, res) => {
 });
 
 // Serve main pages
-app.get('/', (req, res) => {
+app.get('/', fileRequestLimiter, (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/about', (req, res) => {
+app.get('/about', fileRequestLimiter, (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html')); // Replace with about.html if you create one
 });
 
-app.get('/faq', (req, res) => {
+app.get('/faq', fileRequestLimiter, (req, res) => {
     res.sendFile(path.join(__dirname, 'faq.html'));
 });
 
-app.get('/reporting-guidelines', (req, res) => {
+app.get('/reporting-guidelines', fileRequestLimiter, (req, res) => {
     res.sendFile(path.join(__dirname, 'reporting-guidelines.html'));
 });
 
