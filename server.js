@@ -1,10 +1,17 @@
 const express = require('express');
 const path = require('path');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Rate limiter: max 100 requests per 15 minutes per IP
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
 // Serve static files for CSS, JS, and HTML assets
+app.use(limiter); // Apply rate limiting to all routes
 app.use(express.static(path.join(__dirname, '/')));
 
 // Sample FAQs data
@@ -50,7 +57,7 @@ app.get('/faq', (req, res) => {
     res.sendFile(path.join(__dirname, 'faq.html'));
 });
 
-app.get('/reporting-guidelines', (req, res) => {
+app.get('/reporting-guidelines', limiter, (req, res) => {
     res.sendFile(path.join(__dirname, 'reporting-guidelines.html'));
 });
 
