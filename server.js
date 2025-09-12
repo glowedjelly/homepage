@@ -11,15 +11,7 @@ const limiter = rateLimit({
   max: 100, // limit each IP to 100 requests per windowMs
 });
 
-
-// Set up rate limiter: maximum of 100 requests per 15 minutes per IP
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
-});
-
-
-// Serve static files for CSS, JS, and HTML assets
+// Apply rate limiter globally
 app.use(limiter); // Apply rate limiting to all routes
 app.use(express.static(path.join(__dirname, '/')));
 
@@ -54,24 +46,19 @@ app.get('/api/faqs', (req, res) => {
 });
 
 // Serve main pages
-app.get('/', fileRequestLimiter, (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/about', fileRequestLimiter, (req, res) => {
+app.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html')); // Replace with about.html if you create one
 });
 
-
-app.get('/faq', limiter, (req, res) => {
-
-app.get('/faq', fileRequestLimiter, (req, res) => {
-
+app.get('/faq', (req, res) => {
     res.sendFile(path.join(__dirname, 'faq.html'));
 });
 
-app.get('/reporting-guidelines', limiter, (req, res) => {
-
+app.get('/reporting-guidelines', (req, res) => {
     res.sendFile(path.join(__dirname, 'reporting-guidelines.html'));
 });
 
