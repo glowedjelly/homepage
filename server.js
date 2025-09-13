@@ -13,5 +13,5 @@ app.use((req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Roblox fan site running at http://localhost:${PORT}`);
+  console.log(`Glowing site running at http://localhost:${PORT}`);
 });

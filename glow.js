@@ -61,7 +61,7 @@ function hideModal() {
 
 function loginForm() {
   return `
-    <h2>Login to Roblox</h2>
+    <h2>Login to Glow</h2>
     <form onsubmit="event.preventDefault();hideModal();alert('Fake login!');">
       <label>Username</label>
       <input type="text" required style="width:100%;margin-bottom:1rem;" />
@@ -74,7 +74,7 @@ function loginForm() {
 }
 function signupForm() {
   return `
-    <h2>Sign Up for Roblox</h2>
+    <h2>Sign Up for Glow</h2>
     <form onsubmit="event.preventDefault();hideModal();alert('Fake signup!');">
       <label>Username</label>
       <input type="text" required style="width:100%;margin-bottom:1rem;" />
