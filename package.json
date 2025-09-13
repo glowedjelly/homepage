@@ -4,7 +4,8 @@
   "description": "A simple homepage built with HTML, CSS, JavaScript, and a Node.js backend.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node test.js"
   },
   "author": "",
   "license": "MIT",
