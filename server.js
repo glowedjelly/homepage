@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(__dirname));
 
 // Fallback to index.html for SPA navigation
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
